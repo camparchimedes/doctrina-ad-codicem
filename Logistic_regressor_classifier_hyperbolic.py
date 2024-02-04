@@ -44,8 +44,9 @@ class HyperbolicLogisticRegression(nn.Module):
 # Loss function (more needs done)
 criterion = nn.BCELoss()
 
-# Training
-def train_model(model, X_train, Y_train, num_iterations=1000, learning_rate=0.01, print_cost=False):
+# Training block, 
+"""
+def train_model(model, X_train, Y_train, num_iterations=3000, learning_rate=0.5, print_cost=True):
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     for epoch in range(num_iterations):
         model.train()
@@ -79,7 +80,7 @@ def evaluate_model(model, X_test, Y_test):
         avg_hyperbolic_distance = hyperbolic_distance(
             X_test[predicted_classes == Y_test], predictions[predicted_classes == Y_test]).mean().item()
     return accuracy, avg_hyperbolic_distance
-
+"""
 
 # Placeholders
 """
