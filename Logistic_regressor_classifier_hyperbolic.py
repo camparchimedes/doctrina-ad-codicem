@@ -1,13 +1,12 @@
-# Personal project to figure out a logistic regression setup in Hyperbolic space, have fun comparing results here
-# ==> with those in ‘normal space‘, train basic understanding and practice.
+# Personal project to figure out a logistic regression setup in Hyperbolic space, have fun comparing results here with those from ‘normal space‘, train basic understanding and practice.
+# TODO: understand how a dataset must be prepared differently to fit new geometry (for X_train, Y_train, X_test, Y_test)
+# Mental note: feature extraction, dimensionality reduction|t-SNE or UMAP, embedding | VAE..
+
+
 
 import torch.nn as nn
 import geoopt
 
-# TODO: understand how a dataset must be prepared differently to fit with this geometry 
-# ===>(mental note: feature extraction, dimensionality reduction|t-SNE or UMAP, embedding | VAE ?)
-
-#
 # Model of Hyperbolic space (i.e manifold definition)
 ball = geoopt.PoincareBall()
 
@@ -82,8 +81,7 @@ def evaluate_model(model, X_test, Y_test):
     return accuracy, avg_hyperbolic_distance
 
 
-# TODO: X_train, Y_train, X_test, Y_test
-
+# Placeholders
 """
 model = HyperbolicLogisticRegression(input_dim=2)
 trained_model = train_model(model, X_train, Y_train, print_cost=True)
