@@ -1,4 +1,4 @@
-# Personal project to figure out a logistic regression setup in Hyperbolic space, have fun comparing results here with those from ‘normal space‘, train basic understanding and practice.
+# Personal project to figure out a logistic regression setup in Hyperbolic space, have fun comparing results here with previous ones, find out if this is overkill or not
 # TODO: understand how a dataset must be prepared differently to fit new geometry (for X_train, Y_train, X_test, Y_test)
 # Mental note: feature extraction, dimensionality reduction|t-SNE or UMAP, embedding | VAE..
 
