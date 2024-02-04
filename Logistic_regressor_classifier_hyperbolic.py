@@ -1,20 +1,19 @@
-﻿﻿import torch
+# Personal project to figure out a logistic regression setup in Hyperbolic space, have fun comparing results here
+# ==> with those in ‘normal space‘, train basic understanding and practice.
+
 import torch.nn as nn
 import geoopt
 
-"""
-import torch.nn.functional as F
-from torch.cuda.amp import autocast, GradScaler
-from sklearn.metrics import precision_score, recall_score, f1_score
-"""
-# Hyperbolic manifold definition
+# TODO: understand how a dataset must be prepared differently to fit with this geometry 
+# ===>(mental note: feature extraction, dimensionality reduction|t-SNE or UMAP, embedding | VAE ?)
+
+#
+# Model of Hyperbolic space (i.e manifold definition)
 ball = geoopt.PoincareBall()
 
 # Hyperbolic Linear Layer
-
-
 class HyperbolicLinear(nn.Module):
-    # linear operations in hyperbolic space
+    # linear operations 
     def __init__(self, in_features, out_features):
         super(HyperbolicLinear, self).__init__()
         self.weight = geoopt.ManifoldParameter(
@@ -24,17 +23,15 @@ class HyperbolicLinear(nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self):
-        # Initialization for hyperbolic space
+        # Initialization 
         nn.init.uniform_(self.weight, -0.001, 0.001)
         nn.init.uniform_(self.bias, -0.001, 0.001)
-
+		
+ # Möbius matvec 
     def forward(self, x):
-        # Hyperbolic linear transformation|Möbius matvec
         return geoopt.mobius_matvec(self.weight, x) + self.bias
-
-# Hyperbolic Logistic Regression Model
-
-
+		
+# Model class
 class HyperbolicLogisticRegression(nn.Module):
     def __init__(self, input_dim):
         super(HyperbolicLogisticRegression, self).__init__()
@@ -42,15 +39,13 @@ class HyperbolicLogisticRegression(nn.Module):
 
     def forward(self, x):
         x = self.hyperbolic_linear(x)
-        return torch.tanh(x)  # tanh replacing svish in Euclid ver.
+        return torch.tanh(x)  # (svish in Euclid ver.)
 
 
-# Loss function
+# Loss function (more needs done)
 criterion = nn.BCELoss()
 
 # Training
-
-
 def train_model(model, X_train, Y_train, num_iterations=1000, learning_rate=0.01, print_cost=False):
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     for epoch in range(num_iterations):
@@ -65,9 +60,7 @@ def train_model(model, X_train, Y_train, num_iterations=1000, learning_rate=0.01
                 f'Epoch [{epoch+1}/{num_iterations}], Loss: {loss.item():.4f}')
     return model
 
-# Evaluation function w/hyperbolic distance metric
-
-
+# Evaluation |hyperbolic distance 
 def hyperbolic_distance(x, y, c=-1):
     sqrt_c = c ** 0.5
     diff = x - y
@@ -89,7 +82,8 @@ def evaluate_model(model, X_test, Y_test):
     return accuracy, avg_hyperbolic_distance
 
 
-# Note: X_train, Y_train, X_test, Y_test are not ready yet
+# TODO: X_train, Y_train, X_test, Y_test
+
 """
 model = HyperbolicLogisticRegression(input_dim=2)
 trained_model = train_model(model, X_train, Y_train, print_cost=True)
