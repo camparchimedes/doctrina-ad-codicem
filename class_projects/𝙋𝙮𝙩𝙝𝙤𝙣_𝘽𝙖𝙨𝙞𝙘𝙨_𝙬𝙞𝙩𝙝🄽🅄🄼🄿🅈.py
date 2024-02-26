@@ -63,31 +63,17 @@ print("test: " + test)
 """**Expected output**:
 test: Hello Deep Learning!
 
-<font color='blue'>
-<b>What you need to remember </b>:
-    
-- Run your cells using SHIFT+ENTER (or "Run cell")
-- Write code in the designated areas using Python 3 only
-- Do not modify the code outside of the designated areas
 
-<a name='1'></a>
-## 1 - Building basic functions with numpy ##
-
-Numpy is the main package for scientific computing in Python. It is maintained by a large community (www.numpy.org). In this exercise you will learn several key numpy functions such as `np.exp`, `np.log`, and `np.reshape`. You will need to know how to use these functions for future assignments.
-
-<a name='1-1'></a>
 ### 1.1 - sigmoid function, np.exp() ###
 
 Before using `np.exp()`, you will use `math.exp()` to implement the sigmoid function. You will then see why `np.exp()` is preferable to `math.exp()`.
 
-<a name='ex-2'></a>
 ### Exercise 2 - basic_sigmoid
 Build a function that returns the sigmoid of a real number x. Use `math.exp(x)` for the exponential function.
 
 **Reminder**:
-$sigmoid(x) = \frac{1}{1+e^{-x}}$ is sometimes also known as the logistic function. It is a non-linear function used not only in Machine Learning (Logistic Regression), but also in Deep Learning.
+sigmoid(x) = \frac{1}{1+e^{-x}} is sometimes also known as the logistic function. It is a non-linear function used not only in Machine Learning (Logistic Regression), but also in Deep Learning.
 
-<img src="https://github.com/OpenBanboo/Deep-Learning-Specialization/blob/main/Course1-Neural-Networks-and-Deep-Learning/Assignments/Week%202/W2A1_Python_Basics_with_Numpy/images/Sigmoid.png?raw=1" style="width:500px;height:228px;">
 
 To refer to a function belonging to a specific package you could call it using `package_name.function()`. Run the code below to see an example with `math.exp()`.
 """
@@ -187,16 +173,15 @@ print("sigmoid(t_x) = " + str(sigmoid(t_x)))
 
 sigmoid_test(sigmoid)
 
-"""<a name='1-2'></a>
 ### 1.2 - Sigmoid Gradient
 
 As you've seen in lecture, you will need to compute gradients to optimize loss functions using backpropagation. Let's code your first gradient function.
 
-<a name='ex-4'></a>
+
 ### Exercise 4 - sigmoid_derivative
 Implement the function sigmoid_grad() to compute the gradient of the sigmoid function with respect to its input x. The formula is:
 
-$$sigmoid\_derivative(x) = \sigma'(x) = \sigma(x) (1 - \sigma(x))\tag{2}$$
+sigmoid\_derivative(x) = \sigma'(x) = \sigma(x) (1 - \sigma(x))\tag{2}
 
 You often code this function in two steps:
 1. Set s to be the sigmoid of x. You might find your sigmoid(x) function useful.
