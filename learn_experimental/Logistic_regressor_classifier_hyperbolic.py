@@ -29,7 +29,7 @@ class HyperbolicLinear(nn.Module):
     def forward(self, x):
         return geoopt.mobius_matvec(self.weight, x) + self.bias
 		
-# Model class
+# nn.Module
 class HyperbolicLogisticRegression(nn.Module):
     def __init__(self, input_dim):
         super(HyperbolicLogisticRegression, self).__init__()
@@ -37,14 +37,13 @@ class HyperbolicLogisticRegression(nn.Module):
 
     def forward(self, x):
         x = self.hyperbolic_linear(x)
-        return torch.tanh(x)  # hyperbolic tangent function is an old mathematical function. First used in 1774 (L'Abbe Sauri).
+        return torch.tanh(x)  # hyperbolic tangent function is an old mathematical function. First use in 1774 (L'Abbe Sauri).
 
 
 # Loss function (more needs done)
 criterion = nn.BCELoss()
 
-# Training block, 
-
+# Train
 def train_model(model, X_train, Y_train, num_iterations=3000, learning_rate=0.5, print_cost=True):
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     for epoch in range(num_iterations):
