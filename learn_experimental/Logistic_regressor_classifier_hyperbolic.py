@@ -1,7 +1,6 @@
-# practice/overview/layout: logistic regression model for Hyperbolic space
-# TODO: understand how a dataset must be prepared differently to fit new geometry (for X_train, Y_train, X_test, Y_test)
-# mental note: feature extraction, dimensionality reduction|t-SNE or UMAP, embedding | VAE
-
+# project_practice|understanding: logistic regression model in Hyperbolic space
+# TODO: dataset, feature extraction, dimensionality reduction [t-SNE/UMAP, embedding,VAE]
+# mental note: compare notes
 
 
 import torch.nn as nn
@@ -38,14 +37,14 @@ class HyperbolicLogisticRegression(nn.Module):
 
     def forward(self, x):
         x = self.hyperbolic_linear(x)
-        return torch.tanh(x)  # (svish in Euclid ver.)
+        return torch.tanh(x)  # hyperbolic tangent function is an old mathematical function. First used in 1774 (L'Abbe Sauri).
 
 
 # Loss function (more needs done)
 criterion = nn.BCELoss()
 
 # Training block, 
-"""
+
 def train_model(model, X_train, Y_train, num_iterations=3000, learning_rate=0.5, print_cost=True):
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     for epoch in range(num_iterations):
@@ -60,7 +59,7 @@ def train_model(model, X_train, Y_train, num_iterations=3000, learning_rate=0.5,
                 f'Epoch [{epoch+1}/{num_iterations}], Loss: {loss.item():.4f}')
     return model
 
-# Evaluation |hyperbolic distance 
+# Hyperbolic distance 
 def hyperbolic_distance(x, y, c=-1):
     sqrt_c = c ** 0.5
     diff = x - y
@@ -69,7 +68,7 @@ def hyperbolic_distance(x, y, c=-1):
     norm_y = torch.norm(y, p=2, dim=1)
     return torch.acosh(1 + 2 * (norm_diff ** 2) / ((1 - c * (norm_x ** 2)) * (1 - c * (norm_y ** 2))))
 
-
+# Eval
 def evaluate_model(model, X_test, Y_test):
     model.eval()
     with torch.no_grad():
@@ -80,12 +79,12 @@ def evaluate_model(model, X_test, Y_test):
         avg_hyperbolic_distance = hyperbolic_distance(
             X_test[predicted_classes == Y_test], predictions[predicted_classes == Y_test]).mean().item()
     return accuracy, avg_hyperbolic_distance
-"""
+
 
 # Placeholders
-"""
+
 model = HyperbolicLogisticRegression(input_dim=2)
 trained_model = train_model(model, X_train, Y_train, print_cost=True)
 accuracy, avg_hyperbolic_distance = evaluate_model(trained_model, X_test, Y_test)
 print(f'Accuracy: {accuracy}, Average Hyperbolic Distance: {avg_hyperbolic_distance}')
-"""
+
