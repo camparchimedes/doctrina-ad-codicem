@@ -1,8 +1,3 @@
-# project_practice|understanding: logistic regression model in Hyperbolic space
-# TODO: dataset, feature extraction, dimensionality reduction [t-SNE/UMAP, embedding,VAE]
-# mental note: compare notes
-
-
 import torch.nn as nn
 import geoopt
 
