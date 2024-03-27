@@ -1,20 +1,19 @@
-#procedure for daylight_windoze_demo_set_on_consumer_pc [no gpu]
-
 ____________________________________________________________________________________________
-
 WIN CMDLINE***cmds***
-pip install --upgrade pip
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-pip install transformers
-python -c "import torch; print(torch.__version__)"
+├── [project: nb-whisper-small/medium, Windoze_demo_set_on_consumer_pc[gpu=no])
+│   ├── pip install --upgrade pip
+│   ├── pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+│   ├── pip install transformers
+│   ├── python -c "import torch; print(torch.__version__)"
+│   └── pip install moviepy 
+└── #subtitle generation
+    └── pip install moviepy
+└── FFmpeg
+├── download from link¹, place: C:\ffmpeg\bin
+├── download Python²
+├── IF NOT setx /M PATH "%PATH%;C:\ffmpeg\bin" (admin rights) THEN
+└── (Python) import os|os.environ["PATH"] += os.pathsep + r'C:\ffmpeg\bin'
 
-____________________________________________________________________________________________
-PYTHON***temporarily add the ffmpeg directory to the PATH***
-import os
-os.environ["PATH"] += os.pathsep + r'C:\ffmpeg\bin'
-____________________________________________________________________________________________
-WIN CMDLINE***with admin rights***
-setx /M PATH "%PATH%;C:\ffmpeg\bin"
 ____________________________________________________________________________________________
 
 PYTHON***clear python console in win***
@@ -23,9 +22,6 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 ____________________________________________________________________________________________
 Links:
-
-
-    https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip
-
-    https://www.python.org/downloads/
+    ¹https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip
+    ²https://www.python.org/downloads/
 
