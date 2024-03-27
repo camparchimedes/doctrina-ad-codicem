@@ -1,5 +1,6 @@
 ____________________________________________________________________________________________
 WIN CMDLINE***cmds***
+
 ├── [project: nb-whisper-small/medium, Windoze_demo_set_on_consumer_pc[gpu=no])
 │   ├── pip install --upgrade pip
 │   ├── pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
