@@ -1,1 +1,24 @@
+#procedure for daylight_windoze_demo_set_on_consumer_pc [no gpu]
 
+____________________________________________________________________________________________
+
+WIN CMDLINE***cmds***
+pip install --upgrade pip
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install transformers
+python -c "import torch; print(torch.__version__)"
+
+____________________________________________________________________________________________
+PYTHON***temporarily add the ffmpeg directory to the PATH***
+import os
+os.environ["PATH"] += os.pathsep + r'C:\ffmpeg\bin'
+____________________________________________________________________________________________
+WIN CMDLINE***with admin rights***
+setx /M PATH "%PATH%;C:\ffmpeg\bin"
+____________________________________________________________________________________________
+
+PYTHON***clear python console in win***
+import os
+os.system('cls' if os.name == 'nt' else 'clear')
+
+____________________________________________________________________________________________
